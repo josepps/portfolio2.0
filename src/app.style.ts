@@ -1,16 +1,30 @@
 import styled from 'styled-components'
 
+export const darkTheme = {
+    colorPrimary: '#94D1D5',
+    colorSecond: '#00435E',
+    colorThird: "#fff",
+    linearGradient: "linear-gradient(90deg, #94D1D5 , #007399)"
+  };
+  
+  export const lightTheme = {
+    colorPrimary: '#032738',
+    colorSecond: '#fff',
+    colorThird: "#94D1D5",
+    linearGradient: "linear-gradient(90deg, #032738, #94D1D5)"
+  };
+
 export const Header = styled.header`
     height: 13vh;
     width: 100vw;
-    background: #032738;
+    background: ${(props) => props.theme.colorPrimary};
     display: flex;
     align-items: center;
     justify-content: space-around;
     transition: .4s;
 
     .soon {
-        color: #fff;
+        color: ${(props) => props.theme.colorSecond};
         font-size: 1.3rem;
         position: relative;
         transition: all .5s;
@@ -23,14 +37,14 @@ export const Header = styled.header`
         }
 
         b {
-            color: #94D1D5;
+            color: ${(props) => props.theme.colorThird};
         }
 
         &:hover {
-            color: #94D1D5;
+            color: ${(props) => props.theme.colorThird};
 
             b {
-                color: #fff;
+                color: ${(props) => props.theme.colorSecond};
             }
         }
     }
@@ -41,11 +55,11 @@ export const Header = styled.header`
         list-style-type: none;
 
         li a {
-            color: #fff;
+            color: ${(props) => props.theme.colorSecond};
             font-size: 1.2rem;
             padding-bottom: 2px;
             font-weight: 600;
-            background-image: linear-gradient(90deg, #032738, #94D1D5);
+            background-image: ${(props) => props.theme.linearGradient};
             background-repeat: no-repeat;
             background-size: 0% 2px;
             background-position: left bottom;
@@ -53,38 +67,8 @@ export const Header = styled.header`
 
             &:hover {
                 background-size: 100% 3px;
-                color: #94D1D5;
+                color: ${(props) => props.theme.colorThird};
                 margin-bottom: 10px;
-            }
-        }
-    }
-
-    &.light {
-        background: #94D1D5;
-
-        .soon {
-            color: #00435E;
-            transition: all .6s linear;
-
-            b {
-                color: #fff;
-            }
-
-            &:hover {
-                color: #fff;
-
-            b {
-                color: #00435E;
-            }
-        }
-        }
-
-        nav ul li a {
-            color: #00435E;
-            background-image: linear-gradient(90deg, #94D1D5 , #007399);
-
-            &:hover {
-                color: #fff;
             }
         }
     }
