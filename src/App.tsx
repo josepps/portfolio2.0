@@ -5,6 +5,7 @@ import { Header, lightTheme, darkTheme } from "./app.style";
 function App() {
 
   const [isDarkMode, setIsDarkMode] = useState(window.matchMedia('(prefers-color-scheme: light)').matches);
+  const [isMenuBurguer, setIsMenuBurguer] = useState("desativado")
 
   useEffect(() => {
     const darkThemeQuery = window.matchMedia('(prefers-color-scheme: light)');
@@ -29,21 +30,29 @@ function App() {
     setIsDarkMode(!isDarkMode);
   };
 
+  const toggleMenuBurguer = () => {isMenuBurguer === "desativado" ? setIsMenuBurguer("ativado") : setIsMenuBurguer("desativado")}
+
   return (
     <>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <Header>
           <a className="soon" href="#home"><h2>Jo<b>s</b>é <span><b>s</b>antos</span></h2></a>
-          <nav>
-            <ul>
-              <li><a href="#home">Início</a></li>
-              <li><a href="#sobreMim">Sobre Mim</a></li>
-              <li><a href="#habilidades">Habilidades</a></li>
-              <li><a href="#projetos">Projetos</a></li>
-              <li><a href="#certificados">Certificados</a></li>
-              <li><a href="#contato">Contato</a></li>
-            </ul>
-          </nav>
+          <div className={`containerNav ${isMenuBurguer}`}>
+            <div className={`menuHamburguer`}
+            onClick={ toggleMenuBurguer }>
+              <span></span>
+            </div>
+            <nav>
+              <ul>
+                <li><a href="#home" onClick={ toggleMenuBurguer }>Início</a></li>
+                <li><a href="#sobreMim" onClick={ toggleMenuBurguer }>Sobre Mim</a></li>
+                <li><a href="#habilidades" onClick={ toggleMenuBurguer }>Habilidades</a></li>
+                <li><a href="#projetos" onClick={ toggleMenuBurguer }>Projetos</a></li>
+                <li><a href="#certificados" onClick={ toggleMenuBurguer }>Certificados</a></li>
+                <li><a href="#contato" onClick={ toggleMenuBurguer }>Contato</a></li>
+              </ul>
+            </nav>
+          </div>
           <label className="container">
             <input type="checkbox"  onClick={toggleDarkMode} checked={!isDarkMode}/>
             <span className="slider round">

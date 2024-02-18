@@ -49,6 +49,12 @@ export const Header = styled.header`
         }
     }
 
+    .containerNav {
+        input {
+            display: none;
+        }
+    }
+
     nav ul {
         display: flex;
         gap: 20px;
@@ -220,6 +226,98 @@ export const Header = styled.header`
                 -29px 2px 0 8px #fff
             ;
             transition: .4s;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        justify-content: space-between;
+        padding: 0 50px;
+
+        .containerNav {
+            width: 100vw;
+            height: 13vh; 
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            nav {
+                display: none;
+            }
+
+            .menuHamburguer {
+                width: 40px;
+                height: 32px; 
+                position: relative;
+                top: 5vh;
+                left: 50%;
+                transform: translate(-50%, 0);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                span {
+                    width: 40px;
+                    height: 6px;
+                    background: #fff;
+                    position: absolute;
+                    border-radius: 8px;
+
+                    &::before, &::after {
+                        content: "";
+                        width: 40px;
+                        height: 6px;
+                        background: #fff;
+                        position: absolute;
+                        border-radius: 8px;
+                        transition: all 0.5s;
+                    }
+
+                    &::before {
+                        top: 12px;
+                    }
+
+                    &::after {
+                        bottom: 12px;
+                    }
+                }
+            }
+
+            &.ativado {
+                height: 100vh;
+                background: ${(props) => props.theme.colorPrimary};
+
+                nav {
+                    display: flex;
+                    justify-content: center;
+                    height: 90%;
+                    align-items: center;
+
+                    ul {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 30px;
+
+                        li a {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+
+                .menuHamburguer span {
+                    background: transparent;
+
+                    &::before {
+                        transform: rotate(220deg);
+                        top: 0;
+                    }
+
+                    &::after {
+                        transform: rotate(-220deg);
+                        bottom: 0;
+                    }
+                }
+            }
         }
     }
 `
