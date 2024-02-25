@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import imagemDev from "./img/Dev.png"
 
 export const darkTheme = {
     colorPrimary: '#94D1D5',
@@ -29,6 +30,7 @@ export const Header = styled.header`
         position: relative;
         transition: all .5s;
         margin-bottom: 30px;
+        z-index: 9;
 
         span {
             position: absolute;
@@ -132,7 +134,7 @@ export const Header = styled.header`
                 right: 16%;
                 box-shadow: 
                     -8px 7px 0 3px #535370,
-                    2px 20px 0 #535370;
+                    -1px 14px 0 #535370;
                 transition: .4s;
                 transform: scale(0) rotate(360deg);
                 filter: saturate(.75);
@@ -239,6 +241,7 @@ export const Header = styled.header`
             position: absolute;
             top: 0;
             left: 0;
+            transition: all .5s;
 
             nav {
                 display: none;
@@ -320,4 +323,168 @@ export const Header = styled.header`
             }
         }
     }
-`
+`;
+
+export const SectionMain = styled.main`
+    height: 87vh;
+    width: 100vw;
+    background: ${(props) => props.theme.colorPrimary};
+    display: flex;
+
+    .infoMain {
+        width: 52%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        margin-left: 7%;
+
+        h1 {
+            color: ${(props) => props.theme.colorThird};
+            font-size: 3.2rem;
+        }
+
+        .text1 {
+            font-weight: 300;
+        }
+
+        p {
+            font-size: 2.2rem;
+            font-weight: 500;
+            position: relative;
+            color: ${(props) => props.theme.colorSecond};
+
+            .magicText::before {
+                content: "";
+                animation: magicWords 10s infinite;
+                color: ${(props) => props.theme.colorThird};
+            }
+
+            .magicText::after {
+                content: "";
+                position: absolute;
+                height: 2.3rem; 
+                border-left: 2px solid #fff;
+                right: -3px;
+                top: 3.5px;
+                animation: blinkingCursor .5s infinite, type 10s steps(20) infinite;
+                width: calc(100% - 140px);
+                background: ${(props) => props.theme.colorPrimary};
+            }
+
+            @keyframes type {
+                20%, 28%, 70%, 78% {
+                    width: 0; 
+                }
+                3%, 47%, 50%, 97%{
+                    width: calc(100% - 140px);
+                }
+            }
+
+            @keyframes blinkingCursor {
+                0% {
+                    border-left: 2px solid ${(props) => props.theme.colorPrimary};
+                }
+
+            }
+
+            @keyframes magicWords {
+                0%, 50% {
+                    content: "Desenvolvedor Front-End";
+                }
+                51%, 100% {
+                    content: "Apaixonado por programação";
+                }
+            }
+        }
+    }
+
+    .containerImgMain {
+        width: 48%;
+        display: flex;
+        align-items: center;
+
+        .imgMain {
+            width: 300px; 
+            height: 300px;
+            border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+            background-image: url(${imagemDev});
+            background-size: 400px;
+            background-position: 55% 270%;
+            box-shadow: 0 0 15px ${(props) => props.theme.colorSecond};
+            animation: blob 5s linear infinite;
+            border: 1px solid  ${(props) => props.theme.colorSecond};
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+            }
+            33% {
+                border-radius: 42% 28% 48% 48% / 28% 28% 72% 72%;
+            }
+            66% {
+                border-radius: 100% 56% 56% 100% / 100% 100% 56% 56%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px)  {
+        .infoMain{
+            .text2Main {
+                font-size: 1.7rem;
+
+                .magicText::after {
+                    height: 1.7rem; 
+                }
+            }
+        }
+        .containerImgMain {
+            justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 1010px) {
+        .infoMain{
+            .text2Main {
+                font-size: 1.2rem;
+
+                .magicText::after {
+                    height: 1.3rem; 
+                    top: 2.2px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px)  {
+        flex-direction: column;
+        position: relative;
+
+        .infoMain {
+            width: 80vw;
+            display: flex;
+            margin-left: 15%;
+        }
+
+        .containerImgMain {
+            position: absolute;
+            top: 80px;
+            right: 0;
+
+            .imgMain {
+                width: 200px; 
+                height: 200px;
+                background-size: 250px;
+                background-position: 55% -100%;
+            }
+        }
+    }
+
+    @media screen and (max-height: 700px) {
+        .containerImgMain {
+            top: 0px;
+        }
+    }
+`;

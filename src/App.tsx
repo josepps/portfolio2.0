@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import  { ThemeProvider } from "styled-components";
-import { Header, lightTheme, darkTheme } from "./app.style";
+// import dev from "./img/Dev.png";
+import { Header, lightTheme, darkTheme, SectionMain } from "./app.style";
 
 function App() {
 
@@ -62,6 +63,16 @@ function App() {
             </span>
           </label>
         </Header>
+        <SectionMain>
+          <div className="infoMain">
+            <p className="text1">Olá Mundo, me chamo</p>
+            <h1>José Santos</h1>
+            <p className="text2Main">E eu sou <span className="magicText"></span></p>
+          </div>
+          <div className="containerImgMain">
+            <div className="imgMain"></div>
+          </div>
+        </SectionMain>
       </ThemeProvider>
     </>
   )
